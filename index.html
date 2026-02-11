@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ascent Intelligent Technologies</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  
+  <meta name="description" content="Innovative AI solutions for smarter businesses - Ascent Intelligent Technologies." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -27,12 +27,55 @@
       background: var(--bg);
       color: white;
       line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(247,147,26,0.2);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange);
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--grey);
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
     }
 
     header {
-      padding: 40px 10%;
+      padding: 60px 10% 40px;
       text-align: center;
-      background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
     }
 
     header img {
@@ -42,18 +85,12 @@
 
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.8rem;
-      color: var(--light-grey);
-      letter-spacing: 3px;
-    }
-
-    h1 span {
-      color: var(--orange);
-    }
-
-    .hero {
-      padding: 80px 10%;
-      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #f7931a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
     }
 
     .hero p {
@@ -120,6 +157,18 @@
     .clients {
       text-align: center;
       color: var(--grey);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .neon-line {
+      height: 2px;
+      width: 60%;
+      margin: 60px auto;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange),
+                  0 0 20px var(--orange),
+                  0 0 40px rgba(247,147,26,0.5);
     }
 
     form {
@@ -180,26 +229,36 @@
         font-size: 2rem;
       }
     }
-
   </style>
 </head>
-
 <body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+  <div class="logo">ASCENT</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
 <header>
   <img src="logo.png" alt="Ascent Intelligent Technologies Logo">
-  <h1>ASCENT INTELLIGENT <span>TECHNOLOGIES</span></h1>
+  <h1>Innovative AI solutions for smarter businesses - Ascent Intelligent Technologies.</h1>
+  <div class="hero">
+    <p>
+      We build scalable, secure, and intelligent technology systems that empower businesses to innovate faster,
+      operate smarter, and grow confidently in a digital-first world.
+    </p>
+    <a href="#contact" class="btn">Work With Us</a>
+  </div>
 </header>
 
-<section class="hero">
-  <p>
-    We build scalable, secure, and intelligent technology systems that empower businesses to innovate faster,
-    operate smarter, and grow confidently in a digital-first world.
-  </p>
-  <a href="#contact" class="btn">Work With Us</a>
-</section>
+<div class="neon-line"></div>
 
-<section>
+<section id="services">
   <h2 class="section-title">Our Services</h2>
   <div class="grid">
     <div class="card">
@@ -221,7 +280,9 @@
   </div>
 </section>
 
-<section>
+<div class="neon-line"></div>
+
+<section id="clients">
   <h2 class="section-title">Client Solutions</h2>
   <div class="clients">
     <p><strong>Wagkart (Delhi)</strong> – Built a trigger-based Video-on-Demand streaming pipeline with scalable AKS infrastructure for cost-efficient, secure delivery.</p>
@@ -232,12 +293,13 @@
   </div>
 </section>
 
+<div class="neon-line"></div>
+
 <section id="contact">
   <h2 class="section-title">Contact Us</h2>
   <form action="https://formspree.io/f/mjgeglbp" method="POST">
     <input type="text" name="name" placeholder="Your Name" required />
     <input type="email" name="email" placeholder="Your Email" required />
-    <input type="phone" name="phone" placeholder="Your Phone Number" required />
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
@@ -253,6 +315,27 @@
   </div>
   <p>© 2026 Ascent Intelligent Technologies. All Rights Reserved.</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#f7931a" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 2 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#f7931a",
+      opacity: 0.2,
+      width: 1
+    },
+    move: { enable: true, speed: 1 }
+  }
+});
+</script>
 
 </body>
 </html>
