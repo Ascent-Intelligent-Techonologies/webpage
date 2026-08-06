@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales CRM for Phone-First Teams | Ascent Intelligent Technologies</title>
+  <meta name="description" content="The CRM built for premium businesses that sell over the phone with large sales teams and social-media-driven demand — automatic lead capture, click-to-call, AI lead scoring, and team reporting." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --orange: #f7931a;
+      --grey: #9a9a9a;
+      --light-grey: #d0d0d0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: white;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(247,147,26,0.2);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange);
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--light-grey);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--grey);
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    header {
+      padding: 60px 10% 40px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      border: 1px solid rgba(247,147,26,0.4);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #f7931a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px auto;
+      color: var(--grey);
+      font-size: 1.15rem;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      text-decoration: none;
+      transition: 0.3s;
+      border-radius: 4px;
+      font-weight: 600;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--orange);
+      color: black;
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .btn-solid {
+      background: var(--orange);
+      color: black;
+    }
+
+    .btn-solid:hover {
+      background: transparent;
+      color: var(--orange);
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 2rem;
+      color: var(--orange);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--grey);
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #1f1f1f;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border: 1px solid var(--orange);
+      box-shadow: 0 0 25px rgba(247, 147, 26, 0.2);
+    }
+
+    .card h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--light-grey);
+      font-size: 0.95rem;
+    }
+
+    /* "Is this you?" checklist */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .fit-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .fit-check {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(247,147,26,0.15);
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .fit-item h4 {
+      color: white;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .fit-item p {
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+
+    /* How it works steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      counter-reset: step;
+    }
+
+    .step {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .step .num {
+      counter-increment: step;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      margin: 0 auto 18px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+    }
+
+    .step .num::before {
+      content: counter(step);
+    }
+
+    .step h3 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      color: var(--grey);
+      font-size: 0.92rem;
+    }
+
+    .clients {
+      text-align: center;
+      color: var(--grey);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .neon-line {
+      height: 2px;
+      width: 60%;
+      margin: 0 auto;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange),
+                  0 0 20px var(--orange),
+                  0 0 40px rgba(247,147,26,0.5);
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media(max-width:600px){
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    input, textarea, select {
+      padding: 12px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), linear-gradient(135deg, var(--orange) 50%, transparent 50%);
+      background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    label {
+      display: block;
+      color: var(--grey);
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button[type="submit"] {
+      padding: 14px;
+      background: var(--orange);
+      border: none;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button[type="submit"]:hover {
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .form-note {
+      text-align: center;
+      color: var(--grey);
+      font-size: 0.85rem;
+      margin-top: -6px;
+    }
+
+    footer {
+      padding: 40px 10%;
+      text-align: center;
+      border-top: 1px solid #222;
+      color: var(--grey);
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: var(--grey);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      color: var(--orange);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--grey);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--orange);
+    }
+
+    @media(max-width:768px){
+      h1 {
+        font-size: 2rem;
+      }
+      .nav-links a {
+        margin-left: 14px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+  <a href="../" class="logo">ASCENT <span>| CRM</span></a>
+  <div class="nav-links">
+    <a href="#fit">Who It's For</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Request a Demo</a>
+  </div>
+</nav>
+
+<header>
+  <div class="eyebrow">BUILT BY ASCENT INTELLIGENT TECHNOLOGIES</div>
+  <h1>The CRM for Teams That Sell on the Phone — At Scale</h1>
+  <div class="hero">
+    <p>
+      Purpose-built for premium businesses running a large sales team and a steady flow of leads from
+      Instagram, Facebook and WhatsApp. Every enquiry lands on one board, every call is tracked, and every
+      rep knows exactly who to call next.
+    </p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-solid">Request a Demo</a>
+      <a href="#features" class="btn">See What It Does</a>
+    </div>
+  </div>
+</header>
+
+<div class="neon-line"></div>
+
+<section id="fit">
+  <h2 class="section-title">Is This You?</h2>
+  <p class="section-sub">We built this CRM for one kind of business — if this sounds familiar, it was built for you.</p>
+  <div class="fit-grid">
+    <div class="fit-item">
+      <div class="fit-check">✓</div>
+      <div>
+        <h4>A premium, high-value business</h4>
+        <p>Wellness, healthcare, real estate, education, finance — considered purchases where every lead is worth chasing properly.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">✓</div>
+      <div>
+        <h4>You close deals on the phone</h4>
+        <p>Your reps call customers to convert them — not just chat online. Call quality and follow-up speed are what win deals.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">✓</div>
+      <div>
+        <h4>You run a large sales team</h4>
+        <p>Tens of reps working leads in parallel, with managers who need visibility into who's doing what — and how well.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">✓</div>
+      <div>
+        <h4>Social media drives your demand</h4>
+        <p>Instagram and Facebook campaigns, WhatsApp enquiries and lead-gen forms are constantly feeding new leads in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="how">
+  <h2 class="section-title">How It Works</h2>
+  <p class="section-sub">From first click to closed deal, without a single lead falling through the cracks.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="num"></div>
+      <h3>Capture</h3>
+      <p>Leads from Instagram, Facebook, WhatsApp, your website and walk-ins land on your board automatically — no manual entry.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Route &amp; Call</h3>
+      <p>New leads are auto-assigned round-robin across your team. Reps call straight from the CRM — every call recorded automatically.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Prioritize</h3>
+      <p>AI scores every lead by conversion likelihood and drafts follow-up messages, so reps always know who to call next.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Close &amp; Report</h3>
+      <p>Drag leads across a visual pipeline to close. Managers see conversion rates and rep performance in real time.</p>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="features">
+  <h2 class="section-title">Everything Your Sales Floor Needs</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Visual Sales Pipeline</h3>
+      <p>A drag-and-drop Kanban board across your entire funnel — from new lead to booked and converted — with instant search and filters.</p>
+    </div>
+    <div class="card">
+      <h3>Click-to-Call &amp; Recording</h3>
+      <p>Call leads directly from the CRM. Every call is recorded and analyzed automatically, so coaching a rep never means guessing what happened.</p>
+    </div>
+    <div class="card">
+      <h3>Social &amp; WhatsApp Lead Capture</h3>
+      <p>Instagram and Facebook lead-gen ads, WhatsApp enquiries and web forms drop straight onto the board — deduplicated, zero copy-paste.</p>
+    </div>
+    <div class="card">
+      <h3>AI Lead Scoring &amp; Assist</h3>
+      <p>AI ranks leads by how likely they are to convert and drafts a suggested reply, so your team spends time on the leads worth chasing.</p>
+    </div>
+    <div class="card">
+      <h3>Team &amp; Role Management</h3>
+      <p>Round-robin assignment, dedicated views per role — Sales, Reception, Doctor/Specialist, Manager, Admin — and a full audit trail.</p>
+    </div>
+    <div class="card">
+      <h3>Reports &amp; Call Analytics</h3>
+      <p>Conversion rates by source and stage, rep-by-rep performance, and AI-scored call quality — all in one dashboard.</p>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="contact">
+  <h2 class="section-title">Request a Demo</h2>
+  <p class="section-sub">Tell us about your sales team and we'll show you the board running with your own kind of leads.</p>
+  <form action="https://formspree.io/f/mjgeglbp" method="POST">
+    <input type="hidden" name="_subject" value="New CRM demo request" />
+    <input type="hidden" name="source" value="crm-landing-page" />
+    <div class="form-row">
+      <div>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Full name" required />
+      </div>
+      <div>
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" placeholder="Business name" required />
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="email">Work Email</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" required />
+      </div>
+      <div>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91 90000 00000" required />
+      </div>
+    </div>
+    <div>
+      <label for="team_size">Sales Team Size</label>
+      <select id="team_size" name="team_size" required>
+        <option value="" disabled selected>Select team size</option>
+        <option value="1-5">1–5 reps</option>
+        <option value="6-15">6–15 reps</option>
+        <option value="16-50">16–50 reps</option>
+        <option value="50+">50+ reps</option>
+      </select>
+    </div>
+    <div>
+      <label for="message">Tell Us About Your Sales Process</label>
+      <textarea id="message" name="message" rows="4" placeholder="How do leads reach you today, and how does your team follow up?" required></textarea>
+    </div>
+    <button type="submit">Request a Demo</button>
+    <p class="form-note">We'll get back to you within one business day.</p>
+  </form>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="https://www.linkedin.com/company/ascent-intelligent-technologies/" target="_blank">LinkedIn</a>
+    <a href="https://twitter.com/ascent_itech" target="_blank">Twitter</a>
+    <a href="https://www.facebook.com/profile.php?id=100092373452693" target="_blank">Facebook</a>
+    <a href="https://www.youtube.com/channel/UCAkYSzBZleaBLz8dCuyjIsA" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/ascent_itech/" target="_blank">Instagram</a>
+  </div>
+  <p>© 2026 Ascent Intelligent Technologies. All Rights Reserved.</p>
+  <a href="../" class="back-link">← Back to Ascent Intelligent Technologies</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#f7931a" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 2 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#f7931a",
+      opacity: 0.2,
+      width: 1
+    },
+    move: { enable: true, speed: 1 }
+  }
+});
+</script>
+
+</body>
+</html>
