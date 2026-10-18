@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indirect Spend Tracker | Ascent Intelligent Technologies</title>
+  <meta name="description" content="One board for every indirect sourcing request — email and web intake, business-day SLA clocks, threshold-based routing, AI request health scoring, and spend dashboards." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --orange: #f7931a;
+      --grey: #9a9a9a;
+      --light-grey: #d0d0d0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: white;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(247,147,26,0.2);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange);
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--light-grey);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--grey);
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    header {
+      padding: 60px 10% 40px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      border: 1px solid rgba(247,147,26,0.4);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #f7931a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px auto;
+      color: var(--grey);
+      font-size: 1.15rem;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      text-decoration: none;
+      transition: 0.3s;
+      border-radius: 4px;
+      font-weight: 600;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--orange);
+      color: black;
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .btn-solid {
+      background: var(--orange);
+      color: black;
+    }
+
+    .btn-solid:hover {
+      background: transparent;
+      color: var(--orange);
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 2rem;
+      color: var(--orange);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--grey);
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #1f1f1f;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border: 1px solid var(--orange);
+      box-shadow: 0 0 25px rgba(247, 147, 26, 0.2);
+    }
+
+    .card h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--light-grey);
+      font-size: 0.95rem;
+    }
+
+    /* Product screenshots */
+    .shot {
+      max-width: 1080px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(247,147,26,0.25);
+      background: #141414;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.75), 0 0 50px rgba(247,147,26,0.06);
+    }
+
+    .shot-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 16px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #262626;
+    }
+
+    .shot-bar i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #333;
+      display: block;
+    }
+
+    .shot-bar i:nth-child(1) { background: #ff5f57; }
+    .shot-bar i:nth-child(2) { background: #febc2e; }
+    .shot-bar i:nth-child(3) { background: #28c840; }
+
+    .shot-bar span {
+      margin-left: 10px;
+      color: #6a6a6a;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    .shot img {
+      width: 100%;
+      display: block;
+    }
+
+    .shot figcaption {
+      padding: 14px 22px;
+      color: var(--grey);
+      font-size: 0.88rem;
+      border-top: 1px solid #1f1f1f;
+      text-align: center;
+    }
+
+    .shot-pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+      gap: 34px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .shot-pair .shot {
+      max-width: none;
+    }
+
+    .hero-shot {
+      padding: 0 10% 70px;
+    }
+
+    /* "Is this you?" checklist */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .fit-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .fit-check {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(247,147,26,0.15);
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .fit-item h4 {
+      color: white;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .fit-item p {
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+
+    /* How it works steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      counter-reset: step;
+    }
+
+    .step {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .step .num {
+      counter-increment: step;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      margin: 0 auto 18px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+    }
+
+    .step .num::before {
+      content: counter(step);
+    }
+
+    .step h3 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      color: var(--grey);
+      font-size: 0.92rem;
+    }
+
+    .neon-line {
+      height: 2px;
+      width: 60%;
+      margin: 0 auto;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange),
+                  0 0 20px var(--orange),
+                  0 0 40px rgba(247,147,26,0.5);
+    }
+
+    .wa-cta {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 34px;
+      background: #25D366;
+      color: #06281a;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px rgba(37,211,102,0.6);
+    }
+
+    .wa-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .wa-note {
+      text-align: center;
+      color: var(--grey);
+      font-size: 0.85rem;
+      margin-top: 18px;
+    }
+
+    @media(max-width:600px){
+      .wa-btn { width: 100%; }
+    }
+
+    footer {
+      padding: 40px 10%;
+      text-align: center;
+      border-top: 1px solid #222;
+      color: var(--grey);
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: var(--grey);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      color: var(--orange);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--grey);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--orange);
+    }
+
+    @media(max-width:768px){
+      h1 { font-size: 2rem; }
+      .nav-links a { margin-left: 14px; font-size: 0.85rem; }
+      section { padding: 60px 6%; }
+      .hero-shot { padding: 0 6% 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+  <a href="../" class="logo">ASCENT <span>| Spend Tracker</span></a>
+  <div class="nav-links">
+    <a href="#fit">Who It's For</a>
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Book a Walkthrough</a>
+  </div>
+</nav>
+
+<header>
+  <div class="eyebrow">BUILT BY ASCENT INTELLIGENT TECHNOLOGIES</div>
+  <h1>Every Indirect Sourcing Request, On One Board</h1>
+  <div class="hero">
+    <p>
+      Indirect spend hides in inboxes. Requests arrive by email, get forwarded twice, and nobody can say
+      what is open, who owns it, or how long it has been sitting. This puts every request — web form or
+      email — into one queue with a live SLA clock, the right buyer attached, and the numbers your
+      leadership keeps asking for.
+    </p>
+    <div class="cta-row">
+      <a href="https://indirect-spend-tracker-demo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Try the Live Demo</a>
+      <a href="#features" class="btn">See What It Does</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero-shot">
+  <figure class="shot">
+    <div class="shot-bar"><i></i><i></i><i></i><span>Dashboards — open pipeline, savings, cycle time and SLA health</span></div>
+    <img src="../assets/shots/spend-dashboard.jpg" alt="Indirect Spend Tracker dashboard showing open requests, open pipeline value, savings, average cycle time and SLA breach rate, with charts for requests by status and monthly intake versus completions." loading="lazy" />
+    <figcaption>Live totals across every plant, category and business group — filter the range and the whole page moves with it.</figcaption>
+  </figure>
+</div>
+
+<div class="neon-line"></div>
+
+<section id="fit">
+  <h2 class="section-title">Is This You?</h2>
+  <p class="section-sub">Built for indirect sourcing teams buying everything that isn't the product itself — MRO, facilities, IT, services, logistics, CapEx.</p>
+  <div class="fit-grid">
+    <div class="fit-item">
+      <div class="fit-check">&check;</div>
+      <div>
+        <h4>Requests arrive by email</h4>
+        <p>A shared sourcing mailbox that nobody can audit. No reference number, no owner, no due date — just a thread that goes quiet.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">&check;</div>
+      <div>
+        <h4>Several plants, one small team</h4>
+        <p>Requesters across sites and business groups, a handful of buyers, and no clean way to balance who is carrying what.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">&check;</div>
+      <div>
+        <h4>Nobody agrees on the numbers</h4>
+        <p>Cycle time, savings and spend under management get rebuilt in a spreadsheet every quarter — and never quite match.</p>
+      </div>
+    </div>
+    <div class="fit-item">
+      <div class="fit-check">&check;</div>
+      <div>
+        <h4>Approvals depend on paperwork</h4>
+        <p>Budget approvals, SOWs and BOQs turn up late, and nobody notices until the request is already blocked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="how">
+  <h2 class="section-title">How It Works</h2>
+  <p class="section-sub">From raised to awarded, with a clock on every step and an owner on every request.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="num"></div>
+      <h3>Intake</h3>
+      <p>Requests come in through the web form or straight from your sourcing mailbox. Both land in the same queue with a reference number attached.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Route</h3>
+      <p>Category and spend threshold decide the sourcing strategy, the minimum quotes, the target cycle and who has to approve it.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Work</h3>
+      <p>A business-day SLA runs on every request — and pauses while you're waiting on the requester, so buyers aren't punished for someone else's delay.</p>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <h3>Report</h3>
+      <p>Pipeline, savings, cycle time, SLA breach rate and buyer workload update themselves. Export to Excel when finance asks.</p>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="features">
+  <h2 class="section-title">What's In It</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Email &amp; Web Intake</h3>
+      <p>Mails to your sourcing address become tracked requests. Keep the reference in the subject and every reply attaches itself to the right one.</p>
+    </div>
+    <div class="card">
+      <h3>Business-Day SLA Clocks</h3>
+      <p>SLAs counted in working days, paused automatically while a request waits on the requester or sits on hold. Breaches surface before they're history.</p>
+    </div>
+    <div class="card">
+      <h3>Threshold-Based Routing</h3>
+      <p>Spend bands drive the playbook — three quotes or a full RFP with e-auction, the target cycle, and the approver who signs it off.</p>
+    </div>
+    <div class="card">
+      <h3>AI Request Health</h3>
+      <p>Every request scored on responsiveness, completeness, timeliness, sentiment and progress — with the risks named and the next step drafted.</p>
+    </div>
+    <div class="card">
+      <h3>Document Gates</h3>
+      <p>Budget approval, SOW and BOQ are mandatory where they should be. Sourcing approval stays blocked until they're attached — no chasing.</p>
+    </div>
+    <div class="card">
+      <h3>Role-Aware Access</h3>
+      <p>Requester, sourcing buyer, category focal, manager, admin and a read-only auditor — each sees their own scope, with delegation built in.</p>
+    </div>
+    <div class="card">
+      <h3>Spend Dashboards</h3>
+      <p>Open pipeline by category, savings against requested value, cycle time by threshold band, aging, and buyer workload — all filterable.</p>
+    </div>
+    <div class="card">
+      <h3>Supplier &amp; Policy Hub</h3>
+      <p>Supplier directory, category policies, programmes and cross-functional contacts in the same place the request lives.</p>
+    </div>
+    <div class="card">
+      <h3>Full Audit Trail</h3>
+      <p>Every assignment, status change, message and approval is logged and attributable — and exportable for internal audit.</p>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section>
+  <h2 class="section-title">A Closer Look</h2>
+  <p class="section-sub">The request page is where the work actually happens — status, SLA, documents, people, and what to do next.</p>
+  <div class="shot-pair">
+    <figure class="shot">
+      <div class="shot-bar"><i></i><i></i><i></i><span>Request — health score and suggested next steps</span></div>
+      <img src="../assets/shots/spend-request.jpg" alt="A sourcing request page showing a breached SLA banner, a request health score of 54 out of 100 broken into responsiveness, completeness, timeliness, sentiment and progress, with listed risks and three suggested next steps." loading="lazy" />
+      <figcaption>Why the request is stuck, scored and explained — plus the next action, ready to take.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="shot-bar"><i></i><i></i><i></i><span>Home — your queue, soonest SLA first</span></div>
+      <img src="../assets/shots/spend-home.jpg" alt="The home screen showing counts for open requests, awaiting my action, SLA breached, needs triage and unassigned, followed by a list of requests needing attention sorted by SLA." loading="lazy" />
+      <figcaption>Everyone lands on the same question: what is waiting on me, and what breaches first.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="contact">
+  <h2 class="section-title">See It With Your Own Categories</h2>
+  <p class="section-sub">Open the live demo and pick a role — requester, buyer, category focal or sourcing manager — to see the same request from each side. Then talk to us about running it on your spend.</p>
+  <div class="cta-row" style="margin-bottom:40px;">
+    <a href="https://indirect-spend-tracker-demo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Open the Live Demo</a>
+  </div>
+  <div class="wa-cta">
+    <a class="wa-btn"
+       href="https://wa.me/918978451689?text=Hi%2C%20I%27d%20like%20a%20walkthrough%20of%20the%20Indirect%20Spend%20Tracker"
+       target="_blank"
+       rel="noopener noreferrer">
+      <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      Chat With Us on WhatsApp
+    </a>
+    <p class="wa-note">Opens WhatsApp with your message ready to send &middot; +91 89784 51689</p>
+  </div>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="https://www.linkedin.com/company/ascent-intelligent-technologies/" target="_blank">LinkedIn</a>
+    <a href="https://twitter.com/ascent_itech" target="_blank">Twitter</a>
+    <a href="https://www.facebook.com/profile.php?id=100092373452693" target="_blank">Facebook</a>
+    <a href="https://www.youtube.com/channel/UCAkYSzBZleaBLz8dCuyjIsA" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/ascent_itech/" target="_blank">Instagram</a>
+  </div>
+  <p>&copy; 2026 Ascent Intelligent Technologies. All Rights Reserved.</p>
+  <a href="../" class="back-link">&larr; Back to Ascent Intelligent Technologies</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#f7931a" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 2 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#f7931a",
+      opacity: 0.2,
+      width: 1
+    },
+    move: { enable: true, speed: 1 }
+  }
+});
+</script>
+
+</body>
+</html>

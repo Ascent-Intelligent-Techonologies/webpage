@@ -149,45 +149,134 @@
       box-shadow: 0 0 25px rgba(247, 147, 26, 0.2);
     }
 
-    #crm-promo {
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
-
-    .promo-card {
-      max-width: 900px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(247,147,26,0.12), var(--card));
-      border: 1px solid rgba(247,147,26,0.4);
-      border-radius: 14px;
-      padding: 50px;
+    .section-sub {
       text-align: center;
-      box-shadow: 0 0 40px rgba(247,147,26,0.08);
-    }
-
-    .promo-card .eyebrow {
-      display: inline-block;
-      color: var(--orange);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      border: 1px solid rgba(247,147,26,0.4);
-      padding: 5px 14px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-    }
-
-    .promo-card h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: white;
-      margin-bottom: 16px;
-    }
-
-    .promo-card p {
       color: var(--grey);
-      max-width: 620px;
-      margin: 0 auto 26px;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 0 30px rgba(247, 147, 26, 0.18);
+    }
+
+    .product-thumb {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-bottom: 1px solid #1f1f1f;
+      background: #141414;
+    }
+
+    .product-thumb img {
+      width: 138%;
+      height: 138%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+      transition: 0.4s ease;
+    }
+
+    .product-card:hover .product-thumb img {
+      width: 128%;
+      height: 128%;
+    }
+
+    .product-thumb.chips {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 11px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(247,147,26,0.10), #141414);
+    }
+
+    .chip {
+      align-self: flex-start;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 999px;
+      padding: 7px 15px 7px 30px;
+      font-size: 0.8rem;
+      color: var(--light-grey);
+      position: relative;
+      max-width: 100%;
+    }
+
+    .chip::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ecc8f;
+      box-shadow: 0 0 8px rgba(46,204,143,0.7);
+    }
+
+    .chip:nth-child(even) { align-self: flex-end; }
+
+    .product-body {
+      padding: 26px 28px 30px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      color: var(--orange);
+      border: 1px solid rgba(247,147,26,0.4);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+    }
+
+    .product-body h3 {
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .product-body p {
+      color: var(--grey);
+      font-size: 0.94rem;
+      flex: 1;
+    }
+
+    .product-link {
+      margin-top: 20px;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.92rem;
     }
 
     .card h3 {
@@ -280,7 +369,7 @@
   <div class="logo">ASCENT</div>
   <div class="nav-links">
     <a href="#services">Services</a>
-    <a href="#crm-promo">CRM</a>
+    <a href="#products">Products</a>
     <a href="#projects">Projects</a>
     <a href="#clients">Clients</a>
     <a href="#contact">Contact</a>
@@ -301,18 +390,51 @@
 
 <div class="neon-line"></div>
 
-<section id="crm-promo">
-  <div class="promo-card">
-    <div class="promo-text">
-      <span class="eyebrow">NOW SHIPPING</span>
-      <h2>We also built a CRM</h2>
-      <p>
-        A sales CRM purpose-built for premium businesses that sell over the phone with a large sales team —
-        with automatic lead capture from Instagram, Facebook and WhatsApp, click-to-call with recording,
-        and AI-powered lead scoring.
-      </p>
-      <a href="crm/" class="btn">Explore the CRM</a>
-    </div>
+<section id="products">
+  <h2 class="section-title">Our Products</h2>
+  <p class="section-sub">Software we've built, shipped and run in production. Each one started as a problem a client couldn't solve with off-the-shelf tools.</p>
+  <div class="product-grid">
+
+    <a class="product-card" href="crm/">
+      <div class="product-thumb chips">
+        <span class="chip">Lead captured — Instagram</span>
+        <span class="chip">Round-robin → Aisha</span>
+        <span class="chip">AI score 92 / 100</span>
+        <span class="chip">Call recorded &amp; transcribed</span>
+        <span class="chip">Booking confirmed</span>
+      </div>
+      <div class="product-body">
+        <span class="tag">Sales CRM</span>
+        <h3>Ascent CRM</h3>
+        <p>An AI-native sales CRM for phone-first teams. Automatic lead capture from Instagram, Facebook and WhatsApp, click-to-call with recording and transcription, and AI lead scoring that tells reps who to call next.</p>
+        <span class="product-link">Explore the CRM &rarr;</span>
+      </div>
+    </a>
+
+    <a class="product-card" href="spend-tracker/">
+      <div class="product-thumb">
+        <img src="assets/shots/spend-dashboard.jpg" alt="Indirect Spend Tracker dashboard showing open pipeline value, savings, cycle time and SLA breach rate." loading="lazy" />
+      </div>
+      <div class="product-body">
+        <span class="tag">Procurement</span>
+        <h3>Indirect Spend Tracker</h3>
+        <p>Every indirect sourcing request on one board — email and web intake, business-day SLA clocks that pause when you're waiting on someone, threshold-based routing, and spend dashboards finance can trust.</p>
+        <span class="product-link">See the Spend Tracker &rarr;</span>
+      </div>
+    </a>
+
+    <a class="product-card" href="service-crm/">
+      <div class="product-thumb">
+        <img src="assets/shots/engg-dashboard.jpg" alt="Service CRM dashboard showing branch-wise service load, AMC health and open orders." loading="lazy" />
+      </div>
+      <div class="product-body">
+        <span class="tag">Field Service</span>
+        <h3>Service &amp; AMC CRM</h3>
+        <p>For companies that install equipment and then service it for a decade. Installed-base register, commissioning workflows, the service book, engineer workload and AMC renewals that stop slipping through.</p>
+        <span class="product-link">See the Service CRM &rarr;</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -366,6 +488,8 @@
     <p><strong>Wamda.ai (UAE)</strong> – Developed scalable edge software handling 200+ cameras with ML pipelines and searchable FaceID across 3M+ vectors.</p>
     <br>
     <p><strong><a href="https://www.trewellness.in" target="_blank" style="color: inherit;">Trē</a></strong> – Onboarded onto our sales CRM: automatic lead capture from Instagram, Facebook and WhatsApp, click-to-call with recording, and AI-powered lead scoring.</p>
+    <br>
+    <p><strong>Aura Matchmaking</strong> – Built their matchmaking platform: curated member profiles, shareable match shortlists, follow-up and journey tracking, and an admin console with engagement analytics.</p>
     <br>
     <p>Additional NLP analytics systems for Amazon reviews and mobile app development for consultancy & construction sectors.</p>
   </div>
