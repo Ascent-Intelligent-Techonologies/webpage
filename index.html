@@ -291,6 +291,92 @@
       margin: auto;
     }
 
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: 26px;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .client-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    .client-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange);
+      box-shadow: 0 0 25px rgba(247, 147, 26, 0.18);
+    }
+
+    .client-logo {
+      background: #ffffff;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 26px;
+      border-bottom: 1px solid #1f1f1f;
+    }
+
+    .client-logo img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .client-logo img.mono {
+      filter: brightness(0);
+    }
+
+    .client-logo img.sq {
+      max-height: 132%;
+    }
+
+    .client-body {
+      padding: 22px 24px 26px;
+      flex: 1;
+    }
+
+    .client-body h3 {
+      color: #ffffff;
+      font-size: 1.02rem;
+      margin-bottom: 9px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .client-body h3 span {
+      color: var(--grey);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-left: 7px;
+    }
+
+    .client-body p {
+      color: var(--grey);
+      font-size: 0.92rem;
+    }
+
+    .clients-note {
+      text-align: center;
+      color: var(--grey);
+      max-width: 780px;
+      margin: 42px auto 0;
+      font-size: 0.92rem;
+    }
+
     .neon-line {
       height: 2px;
       width: 60%;
@@ -482,17 +568,51 @@
 
 <section id="clients">
   <h2 class="section-title">Client Solutions</h2>
-  <div class="clients">
-    <p><strong>Wagkart (Delhi)</strong> – Built a trigger-based Video-on-Demand streaming pipeline with scalable AKS infrastructure for cost-efficient, secure delivery.</p>
-    <br>
-    <p><strong>Wamda.ai (UAE)</strong> – Developed scalable edge software handling 200+ cameras with ML pipelines and searchable FaceID across 3M+ vectors.</p>
-    <br>
-    <p><strong><a href="https://www.trewellness.in" target="_blank" style="color: inherit;">Trē</a></strong> – Onboarded onto our sales CRM: automatic lead capture from Instagram, Facebook and WhatsApp, click-to-call with recording, and AI-powered lead scoring.</p>
-    <br>
-    <p><strong>Aura Matchmaking</strong> – Built their matchmaking platform: curated member profiles, shareable match shortlists, follow-up and journey tracking, and an admin console with engagement analytics.</p>
-    <br>
-    <p>Additional NLP analytics systems for Amazon reviews and mobile app development for consultancy & construction sectors.</p>
+  <p class="section-sub">Teams who came to us for the thing they couldn't buy off the shelf.</p>
+  <div class="client-grid">
+
+    <a class="client-card" href="https://wamda.ai/" target="_blank" rel="noopener noreferrer">
+      <div class="client-logo"><img src="assets/logos/wamda.svg" alt="Wamda.ai" loading="lazy" /></div>
+      <div class="client-body">
+        <h3>Wamda.ai <span>UAE</span></h3>
+        <p>Scalable edge software handling 200+ cameras, with ML pipelines and searchable FaceID across 3M+ vectors.</p>
+      </div>
+    </a>
+
+    <a class="client-card" href="https://www.linkedin.com/company/wagkart-pet-services" target="_blank" rel="noopener noreferrer">
+      <div class="client-logo"><img class="sq" src="assets/logos/wagkart.jpg" alt="Wagkart Pet Services" loading="lazy" /></div>
+      <div class="client-body">
+        <h3>Wagkart <span>Delhi</span></h3>
+        <p>A trigger-based video-on-demand streaming pipeline on scalable AKS infrastructure, built for cost-efficient, secure delivery.</p>
+      </div>
+    </a>
+
+    <a class="client-card" href="https://www.trewellness.in" target="_blank" rel="noopener noreferrer">
+      <div class="client-logo"><img class="mono" src="assets/logos/tre.webp" alt="Tr&eacute; Wellness" loading="lazy" /></div>
+      <div class="client-body">
+        <h3>Tr&#275; Wellness <span>India</span></h3>
+        <p>Running on our sales CRM — automatic lead capture from Instagram, Facebook and WhatsApp, click-to-call with recording, and AI lead scoring.</p>
+      </div>
+    </a>
+
+    <a class="client-card" href="https://anurupa-8c72e8.azurewebsites.net" target="_blank" rel="noopener noreferrer">
+      <div class="client-logo"><img class="sq" src="assets/logos/anurupa.jpg" alt="AnuRupa Matrimony" loading="lazy" /></div>
+      <div class="client-body">
+        <h3>AnuRupa Matrimony <span>India</span></h3>
+        <p>Their matchmaking platform end to end — curated member profiles, shareable match shortlists, follow-up and journey tracking, and an admin console with engagement analytics.</p>
+      </div>
+    </a>
+
+    <a class="client-card" href="https://in.linkedin.com/company/maplemonk" target="_blank" rel="noopener noreferrer">
+      <div class="client-logo"><img src="assets/logos/maplemonk.svg" alt="MapleMonk" loading="lazy" /></div>
+      <div class="client-body">
+        <h3>MapleMonk <span>India</span></h3>
+        <p>A one-stop data analytics platform that pulls every source together and turns it into decisions businesses can act on.</p>
+      </div>
+    </a>
+
   </div>
+  <p class="clients-note">Plus NLP analytics systems for Amazon reviews, and mobile app development across the consultancy and construction sectors.</p>
 </section>
 
 <div class="neon-line"></div>
