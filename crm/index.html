@@ -209,6 +209,81 @@
       font-size: 0.95rem;
     }
 
+    /* Product screenshots */
+    .shot {
+      max-width: 1080px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(247,147,26,0.25);
+      background: #141414;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.75), 0 0 50px rgba(247,147,26,0.06);
+    }
+
+    .shot-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 16px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #262626;
+    }
+
+    .shot-bar i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #333;
+      display: block;
+    }
+
+    .shot-bar i:nth-child(1) { background: #ff5f57; }
+    .shot-bar i:nth-child(2) { background: #febc2e; }
+    .shot-bar i:nth-child(3) { background: #28c840; }
+
+    .shot-bar span {
+      margin-left: 10px;
+      color: #6a6a6a;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    .shot img {
+      width: 100%;
+      display: block;
+    }
+
+    .shot figcaption {
+      padding: 14px 22px;
+      color: var(--grey);
+      font-size: 0.88rem;
+      border-top: 1px solid #1f1f1f;
+      text-align: center;
+    }
+
+    .shot-stack {
+      display: grid;
+      gap: 54px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .shot-pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+      gap: 34px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .shot-pair .shot {
+      max-width: none;
+    }
+
+    .hero-shot {
+      padding: 0 10% 70px;
+    }
+
     /* "Is this you?" checklist */
     .fit-grid {
       display: grid;
@@ -470,6 +545,9 @@
         margin-left: 14px;
         font-size: 0.85rem;
       }
+      .hero-shot {
+        padding: 0 6% 50px;
+      }
     }
   </style>
 </head>
@@ -482,6 +560,7 @@
   <div class="nav-links">
     <a href="#fit">Who It's For</a>
     <a href="#features">Features</a>
+    <a href="#inside">Inside</a>
     <a href="#contact">Request a Demo</a>
   </div>
 </nav>
@@ -501,6 +580,13 @@
     </div>
   </div>
 </header>
+<div class="hero-shot">
+  <figure class="shot">
+    <div class="shot-bar"><i></i><i></i><i></i><span>Pipeline &mdash; every lead, every stage, scored</span></div>
+    <img src="../assets/shots/crm-pipeline.jpg" alt="The CRM pipeline board showing leads as cards across New Lead, Contacted, Call Back Requested and Pipeline columns, each card carrying a phone number, AI lead score, tags such as Hot Lead or VIP, city, and the rep it is assigned to." loading="lazy" />
+    <figcaption>Drag a lead across the board. Every card shows its AI score, its tags and the rep who owns it &mdash; so nothing sits unclaimed.</figcaption>
+  </figure>
+</div>
 
 <div class="neon-line"></div>
 
@@ -601,6 +687,23 @@
 </section>
 
 <div class="neon-line"></div>
+
+<section id="inside">
+  <h2 class="section-title">A Closer Look</h2>
+  <p class="section-sub">Two things most CRMs can't do &mdash; ask your data a question in plain English, and score every call without anyone writing it up.</p>
+  <div class="shot-stack">
+    <figure class="shot">
+      <div class="shot-bar"><i></i><i></i><i></i><span>Ask the Database &mdash; plain English in, answers out</span></div>
+      <img src="../assets/shots/crm-askdb.jpg" alt="The Ask the Database screen: the typed question 'Show the calls longer than 5 minutes this week with their AI summary' returns the SQL that was run and a results table listing guest, rep, call length, AI score and the summary the call analysis wrote." loading="lazy" />
+      <figcaption>Ask &ldquo;which leads are in payment received but have no call in the last 7 days?&rdquo; and get the answer, the SQL behind it, and a CSV &mdash; no analyst, no report request.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="shot-bar"><i></i><i></i><i></i><span>Calls &mdash; recorded, transcribed and scored</span></div>
+      <img src="../assets/shots/crm-calls.jpg" alt="The calls list showing every inbound and outbound call with the rep, duration, status, an AI quality score, a play button for the recording, conversation tags such as interested or price-discussion, and a link to the transcript." loading="lazy" />
+      <figcaption>Every call recorded and scored out of 100, tagged by what actually happened &mdash; objection handled, price discussed &mdash; with the transcript one click away.</figcaption>
+    </figure>
+  </div>
+</section>
 
 <section id="contact">
   <h2 class="section-title">Request a Demo</h2>
