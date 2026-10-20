@@ -261,27 +261,135 @@
       text-align: center;
     }
 
-    .shot-stack {
-      display: grid;
-      gap: 54px;
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-
-    .shot-pair {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
-      gap: 34px;
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-
-    .shot-pair .shot {
-      max-width: none;
-    }
-
     .hero-shot {
       padding: 0 10% 70px;
+    }
+
+    /* Screenshot slideshow */
+    .slider {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(247,147,26,0.25);
+      background: #141414;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.75), 0 0 50px rgba(247,147,26,0.06);
+    }
+
+    .slider-viewport {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.4, 0.0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(247,147,26,0.45);
+      background: rgba(10,10,10,0.72);
+      color: var(--orange);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+      backdrop-filter: blur(6px);
+      z-index: 3;
+      padding: 0;
+    }
+
+    .slider-nav:hover,
+    .slider-nav:focus-visible {
+      background: var(--orange);
+      color: #000;
+      outline: none;
+      box-shadow: 0 0 18px rgba(247,147,26,0.55);
+    }
+
+    .slider-nav.prev { left: 14px; }
+    .slider-nav.next { right: 14px; }
+
+    .slider-caption {
+      text-align: center;
+      color: var(--grey);
+      font-size: 0.95rem;
+      max-width: 760px;
+      margin: 24px auto 0;
+      min-height: 3em;
+    }
+
+    .slider-caption b {
+      color: white;
+      font-weight: 600;
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .slider-dots button {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border-radius: 50%;
+      border: none;
+      background: #333;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .slider-dots button:hover { background: #555; }
+
+    .slider-dots button[aria-current="true"] {
+      background: var(--orange);
+      width: 26px;
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(247,147,26,0.6);
+    }
+
+    @media(max-width:600px){
+      .slider-nav { width: 36px; height: 36px; font-size: 1.05rem; }
+      .slider-nav.prev { left: 8px; }
+      .slider-nav.next { right: 8px; }
+      .slider-caption { font-size: 0.88rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slider-track { transition: none; }
     }
 
     /* "Is this you?" checklist */
@@ -690,20 +798,41 @@
 
 <section id="inside">
   <h2 class="section-title">A Closer Look</h2>
-  <p class="section-sub">Two things most CRMs can't do &mdash; ask your data a question in plain English, and score every call without anyone writing it up.</p>
-  <div class="shot-stack">
-    <figure class="shot">
-      <div class="shot-bar"><i></i><i></i><i></i><span>Ask the Database &mdash; plain English in, answers out</span></div>
-      <img src="../assets/shots/crm-askdb.jpg" alt="The Ask the Database screen: the typed question 'Show the calls longer than 5 minutes this week with their AI summary' returns the SQL that was run and a results table listing guest, rep, call length, AI score and the summary the call analysis wrote." loading="lazy" />
-      <figcaption>Ask &ldquo;which leads are in payment received but have no call in the last 7 days?&rdquo; and get the answer, the SQL behind it, and a CSV &mdash; no analyst, no report request.</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-bar"><i></i><i></i><i></i><span>Calls &mdash; recorded, transcribed and scored</span></div>
-      <img src="../assets/shots/crm-calls.jpg" alt="The calls list showing every inbound and outbound call with the rep, duration, status, an AI quality score, a play button for the recording, conversation tags such as interested or price-discussion, and a link to the transcript." loading="lazy" />
-      <figcaption>Every call recorded and scored out of 100, tagged by what actually happened &mdash; objection handled, price discussed &mdash; with the transcript one click away.</figcaption>
-    </figure>
+  <p class="section-sub">Six screens your team would actually live in. Use the arrows, or let it run.</p>
+
+  <div class="slider" id="crmSlider">
+    <div class="slider-frame">
+      <div class="shot-bar"><i></i><i></i><i></i><span id="crmSliderBar">Ask the Database &mdash; plain English in, answers out</span></div>
+      <div class="slider-viewport">
+        <div class="slider-track" id="crmSliderTrack">
+          <figure class="slide">
+            <img src="../assets/shots/crm-askdb.jpg" alt="The Ask the Database screen: a typed question returns the SQL that was run and a results table of calls with guest, rep, duration, AI score and summary." />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-calls.jpg" alt="The calls list showing direction, rep, duration, status, AI quality score, a play button for the recording, conversation tags and a link to the transcript." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-dash.jpg" alt="The dashboard showing total leads, leads this month, won deals, conversion rate and booked revenue, with bar charts for pipeline by stage and leads by source." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-aiaudit.jpg" alt="The AI audit log listing every AI decision with its type, the lead it concerned, the model used, the outcome, how long it took and what triggered it." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-reports.jpg" alt="The reports screen showing front-office performance per staff member and a source by stage matrix of lead counts." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-guests.jpg" alt="The guest directory as tagged cards with contact details, plus controls for bulk email, WhatsApp broadcast, bulk import and CSV export." loading="lazy" />
+          </figure>
+        </div>
+      </div>
+      <button class="slider-nav prev" id="crmSliderPrev" type="button" aria-label="Previous screen">&#8249;</button>
+      <button class="slider-nav next" id="crmSliderNext" type="button" aria-label="Next screen">&#8250;</button>
+    </div>
+    <p class="slider-caption" id="crmSliderCaption" aria-live="polite"></p>
+    <div class="slider-dots" id="crmSliderDots"></div>
   </div>
 </section>
+
 
 <section id="contact">
   <h2 class="section-title">Request a Demo</h2>
@@ -731,6 +860,97 @@
   <p>© 2026 Ascent Intelligent Technologies. All Rights Reserved.</p>
   <a href="../" class="back-link">← Back to Ascent Intelligent Technologies</a>
 </footer>
+
+<script>
+(function () {
+  var slides = [
+    { bar: 'Ask the Database — plain English in, answers out',
+      cap: '<b>Ask the Database.</b> Type “which leads are in payment received but have no call in the last 7 days?” and get the answer, the SQL behind it, and a CSV — no analyst, no report request.' },
+    { bar: 'Calls — recorded, transcribed and scored',
+      cap: '<b>Calls.</b> Every call recorded and scored out of 100, tagged by what actually happened — objection handled, price discussed — with the transcript one click away.' },
+    { bar: 'Dashboard — the whole pipeline at a glance',
+      cap: '<b>Dashboard.</b> Leads by stage and by source, conversion rate and booked revenue — so a manager knows where the month stands without asking anyone.' },
+    { bar: 'AI Audit — every decision on the record',
+      cap: '<b>AI Audit.</b> Every AI judgment logged with the model that made it, the outcome and how long it took. Nothing the AI does is a black box.' },
+    { bar: 'Reports — performance by rep and by source',
+      cap: '<b>Reports.</b> Leads created, stage moves and conversions rep by rep, plus a source × stage matrix showing exactly where each channel stalls.' },
+    { bar: 'Guests — the book, with broadcasts built in',
+      cap: '<b>Guests.</b> The whole guest book, tagged and searchable, with WhatsApp broadcasts, bulk email and CSV export built in.' }
+  ];
+
+  var track = document.getElementById('crmSliderTrack');
+  var bar = document.getElementById('crmSliderBar');
+  var caption = document.getElementById('crmSliderCaption');
+  var dotsBox = document.getElementById('crmSliderDots');
+  var root = document.getElementById('crmSlider');
+  if (!track || !bar || !caption || !dotsBox || !root) return;
+
+  var count = track.children.length;
+  var index = 0;
+  var timer = null;
+  var DELAY = 6000;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var dots = [];
+  for (var i = 0; i < count; i++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Show screen ' + (n + 1) + ' of ' + count);
+      b.addEventListener('click', function () { go(n); restart(); });
+      dotsBox.appendChild(b);
+      dots.push(b);
+    })(i);
+  }
+
+  function go(n) {
+    index = (n + count) % count;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    var s = slides[index] || { bar: '', cap: '' };
+    bar.innerHTML = s.bar;
+    caption.innerHTML = s.cap;
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].setAttribute('aria-current', i === index ? 'true' : 'false');
+    }
+  }
+
+  function next() { go(index + 1); }
+  function prev() { go(index - 1); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function start() { if (!reduced && !timer) timer = setInterval(next, DELAY); }
+  function restart() { stop(); start(); }
+
+  document.getElementById('crmSliderNext').addEventListener('click', function () { next(); restart(); });
+  document.getElementById('crmSliderPrev').addEventListener('click', function () { prev(); restart(); });
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', start);
+
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { next(); restart(); }
+    if (e.key === 'ArrowLeft') { prev(); restart(); }
+  });
+
+  var x0 = null;
+  root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+    x0 = null;
+    start();
+  }, { passive: true });
+
+  document.addEventListener('visibilitychange', function () {
+    document.hidden ? stop() : start();
+  });
+
+  go(0);
+  start();
+})();
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
