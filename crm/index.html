@@ -668,7 +668,6 @@
   <div class="nav-links">
     <a href="#fit">Who It's For</a>
     <a href="#features">Features</a>
-    <a href="#inside">Inside</a>
     <a href="#contact">Request a Demo</a>
   </div>
 </nav>
@@ -689,11 +688,40 @@
   </div>
 </header>
 <div class="hero-shot">
-  <figure class="shot">
-    <div class="shot-bar"><i></i><i></i><i></i><span>Pipeline &mdash; every lead, every stage, scored</span></div>
-    <img src="../assets/shots/crm-pipeline.jpg" alt="The CRM pipeline board showing leads as cards across New Lead, Contacted, Call Back Requested and Pipeline columns, each card carrying a phone number, AI lead score, tags such as Hot Lead or VIP, city, and the rep it is assigned to." loading="lazy" />
-    <figcaption>Drag a lead across the board. Every card shows its AI score, its tags and the rep who owns it &mdash; so nothing sits unclaimed.</figcaption>
-  </figure>
+  <div class="slider" id="crmSlider">
+    <div class="slider-frame">
+      <div class="shot-bar"><i></i><i></i><i></i><span id="crmSliderBar">Pipeline &mdash; every lead, every stage, scored</span></div>
+      <div class="slider-viewport">
+        <div class="slider-track" id="crmSliderTrack">
+          <figure class="slide">
+            <img src="../assets/shots/crm-pipeline.jpg" alt="The CRM pipeline board showing leads as cards across New Lead, Contacted, Call Back Requested and Pipeline columns, each card carrying a phone number, AI lead score, tags such as Hot Lead or VIP, city, and the rep it is assigned to." />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-askdb.jpg" alt="The Ask the Database screen: a typed question returns the SQL that was run and a results table of calls with guest, rep, duration, AI score and summary." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-calls.jpg" alt="The calls list showing direction, rep, duration, status, AI quality score, a play button for the recording, conversation tags and a link to the transcript." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-dash.jpg" alt="The dashboard showing total leads, leads this month, won deals, conversion rate and booked revenue, with bar charts for pipeline by stage and leads by source." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-aiaudit.jpg" alt="The AI audit log listing every AI decision with its type, the lead it concerned, the model used, the outcome, how long it took and what triggered it." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-reports.jpg" alt="The reports screen showing front-office performance per staff member and a source by stage matrix of lead counts." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/crm-guests.jpg" alt="The guest directory as tagged cards with contact details, plus controls for bulk email, WhatsApp broadcast, bulk import and CSV export." loading="lazy" />
+          </figure>
+        </div>
+      </div>
+      <button class="slider-nav prev" id="crmSliderPrev" type="button" aria-label="Previous screen">&#8249;</button>
+      <button class="slider-nav next" id="crmSliderNext" type="button" aria-label="Next screen">&#8250;</button>
+    </div>
+    <p class="slider-caption" id="crmSliderCaption" aria-live="polite"></p>
+    <div class="slider-dots" id="crmSliderDots"></div>
+  </div>
 </div>
 
 <div class="neon-line"></div>
@@ -794,44 +822,6 @@
   </div>
 </section>
 
-<div class="neon-line"></div>
-
-<section id="inside">
-  <h2 class="section-title">A Closer Look</h2>
-  <p class="section-sub">Six screens your team would actually live in. Use the arrows, or let it run.</p>
-
-  <div class="slider" id="crmSlider">
-    <div class="slider-frame">
-      <div class="shot-bar"><i></i><i></i><i></i><span id="crmSliderBar">Ask the Database &mdash; plain English in, answers out</span></div>
-      <div class="slider-viewport">
-        <div class="slider-track" id="crmSliderTrack">
-          <figure class="slide">
-            <img src="../assets/shots/crm-askdb.jpg" alt="The Ask the Database screen: a typed question returns the SQL that was run and a results table of calls with guest, rep, duration, AI score and summary." />
-          </figure>
-          <figure class="slide">
-            <img src="../assets/shots/crm-calls.jpg" alt="The calls list showing direction, rep, duration, status, AI quality score, a play button for the recording, conversation tags and a link to the transcript." loading="lazy" />
-          </figure>
-          <figure class="slide">
-            <img src="../assets/shots/crm-dash.jpg" alt="The dashboard showing total leads, leads this month, won deals, conversion rate and booked revenue, with bar charts for pipeline by stage and leads by source." loading="lazy" />
-          </figure>
-          <figure class="slide">
-            <img src="../assets/shots/crm-aiaudit.jpg" alt="The AI audit log listing every AI decision with its type, the lead it concerned, the model used, the outcome, how long it took and what triggered it." loading="lazy" />
-          </figure>
-          <figure class="slide">
-            <img src="../assets/shots/crm-reports.jpg" alt="The reports screen showing front-office performance per staff member and a source by stage matrix of lead counts." loading="lazy" />
-          </figure>
-          <figure class="slide">
-            <img src="../assets/shots/crm-guests.jpg" alt="The guest directory as tagged cards with contact details, plus controls for bulk email, WhatsApp broadcast, bulk import and CSV export." loading="lazy" />
-          </figure>
-        </div>
-      </div>
-      <button class="slider-nav prev" id="crmSliderPrev" type="button" aria-label="Previous screen">&#8249;</button>
-      <button class="slider-nav next" id="crmSliderNext" type="button" aria-label="Next screen">&#8250;</button>
-    </div>
-    <p class="slider-caption" id="crmSliderCaption" aria-live="polite"></p>
-    <div class="slider-dots" id="crmSliderDots"></div>
-  </div>
-</section>
 
 
 <section id="contact">
@@ -864,6 +854,8 @@
 <script>
 (function () {
   var slides = [
+    { bar: 'Pipeline — every lead, every stage, scored',
+      cap: '<b>Pipeline.</b> Drag a lead across the board. Every card carries its AI score, its tags and the rep who owns it — so nothing sits unclaimed.' },
     { bar: 'Ask the Database — plain English in, answers out',
       cap: '<b>Ask the Database.</b> Type “which leads are in payment received but have no call in the last 7 days?” and get the answer, the SQL behind it, and a CSV — no analyst, no report request.' },
     { bar: 'Calls — recorded, transcribed and scored',
