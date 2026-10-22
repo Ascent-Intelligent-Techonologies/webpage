@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel CRM with an AI Voice Agent | Ascent Intelligent Technologies</title>
+  <meta name="description" content="A CRM for travel businesses with an AI voice agent that calls and qualifies new leads in minutes, an auto-reply agent on WhatsApp and Instagram, and guardrails that keep both on a leash. In development." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --orange: #f7931a;
+      --grey: #9a9a9a;
+      --light-grey: #d0d0d0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: white;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(247,147,26,0.2);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange);
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--light-grey);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--grey);
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    header {
+      padding: 60px 10% 40px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      border: 1px solid rgba(247,147,26,0.4);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #f7931a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px auto;
+      color: var(--grey);
+      font-size: 1.15rem;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      text-decoration: none;
+      transition: 0.3s;
+      border-radius: 4px;
+      font-weight: 600;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--orange);
+      color: black;
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .btn-solid {
+      background: var(--orange);
+      color: black;
+    }
+
+    .btn-solid:hover {
+      background: transparent;
+      color: var(--orange);
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 2rem;
+      color: var(--orange);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--grey);
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #1f1f1f;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border: 1px solid var(--orange);
+      box-shadow: 0 0 25px rgba(247, 147, 26, 0.2);
+    }
+
+    .card h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--light-grey);
+      font-size: 0.95rem;
+    }
+
+    /* "Is this you?" checklist */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .fit-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .fit-check {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(247,147,26,0.15);
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .fit-item h4 {
+      color: white;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .fit-item p {
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+
+    /* How it works steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      counter-reset: step;
+    }
+
+    .step {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .step .num {
+      counter-increment: step;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      margin: 0 auto 18px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+    }
+
+    .step .num::before {
+      content: counter(step);
+    }
+
+    .step h3 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      color: var(--grey);
+      font-size: 0.92rem;
+    }
+
+    .neon-line {
+      height: 2px;
+      width: 60%;
+      margin: 0 auto;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange),
+                  0 0 20px var(--orange),
+                  0 0 40px rgba(247,147,26,0.5);
+    }
+
+    .wa-cta {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 34px;
+      background: #25D366;
+      color: #06281a;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px rgba(37,211,102,0.6);
+    }
+
+    .wa-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .wa-note {
+      text-align: center;
+      color: var(--grey);
+      font-size: 0.85rem;
+      margin-top: 18px;
+    }
+
+    @media(max-width:600px){
+      .wa-btn { width: 100%; }
+    }
+
+    footer {
+      padding: 40px 10%;
+      text-align: center;
+      border-top: 1px solid #222;
+      color: var(--grey);
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: var(--grey);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      color: var(--orange);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--grey);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--orange);
+    }
+
+    @media(max-width:768px){
+      h1 { font-size: 2rem; }
+      .nav-links a { margin-left: 14px; font-size: 0.85rem; }
+      section { padding: 60px 6%; }
+      .hero-shot { padding: 0 6% 50px; }
+    }
+    /* Product screenshots */
+    .shot {
+      max-width: 1080px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(247,147,26,0.25);
+      background: #141414;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.75), 0 0 50px rgba(247,147,26,0.06);
+    }
+
+    .shot-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 16px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #262626;
+    }
+
+    .shot-bar i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #333;
+      display: block;
+    }
+
+    .shot-bar i:nth-child(1) { background: #ff5f57; }
+    .shot-bar i:nth-child(2) { background: #febc2e; }
+    .shot-bar i:nth-child(3) { background: #28c840; }
+
+    .shot-bar span {
+      margin-left: 10px;
+      color: #6a6a6a;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    .shot img {
+      width: 100%;
+      display: block;
+    }
+
+    .shot figcaption {
+      padding: 14px 22px;
+      color: var(--grey);
+      font-size: 0.88rem;
+      border-top: 1px solid #1f1f1f;
+      text-align: center;
+    }
+
+    .hero-shot {
+      padding: 0 10% 70px;
+    }
+
+    /* Screenshot slideshow */
+    .slider {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(247,147,26,0.25);
+      background: #141414;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.75), 0 0 50px rgba(247,147,26,0.06);
+    }
+
+    .slider-viewport {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.4, 0.0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(247,147,26,0.45);
+      background: rgba(10,10,10,0.72);
+      color: var(--orange);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+      backdrop-filter: blur(6px);
+      z-index: 3;
+      padding: 0;
+    }
+
+    .slider-nav:hover,
+    .slider-nav:focus-visible {
+      background: var(--orange);
+      color: #000;
+      outline: none;
+      box-shadow: 0 0 18px rgba(247,147,26,0.55);
+    }
+
+    .slider-nav.prev { left: 14px; }
+    .slider-nav.next { right: 14px; }
+
+    .slider-caption {
+      text-align: center;
+      color: var(--grey);
+      font-size: 0.95rem;
+      max-width: 760px;
+      margin: 24px auto 0;
+      min-height: 3em;
+    }
+
+    .slider-caption b {
+      color: white;
+      font-weight: 600;
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .slider-dots button {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border-radius: 50%;
+      border: none;
+      background: #333;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .slider-dots button:hover { background: #555; }
+
+    .slider-dots button[aria-current="true"] {
+      background: var(--orange);
+      width: 26px;
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(247,147,26,0.6);
+    }
+
+    @media(max-width:600px){
+      .slider-nav { width: 36px; height: 36px; font-size: 1.05rem; }
+      .slider-nav.prev { left: 8px; }
+      .slider-nav.next { right: 8px; }
+      .slider-caption { font-size: 0.88rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slider-track { transition: none; }
+    }
+
+    .wip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(247,147,26,0.1);
+      border: 1px solid rgba(247,147,26,0.45);
+      color: var(--orange);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .wip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange);
+      animation: wip-pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes wip-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wip-dot { animation: none; }
+    }
+
+    .agent-card {
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 32px;
+      transition: 0.3s;
+    }
+
+    .agent-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 0 28px rgba(247,147,26,0.15);
+      transform: translateY(-4px);
+    }
+
+    .agent-card .who {
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .agent-card .role {
+      color: var(--orange);
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .agent-card p {
+      color: var(--grey);
+      font-size: 0.94rem;
+    }
+
+    .agent-card ul {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .agent-card li {
+      color: var(--light-grey);
+      font-size: 0.9rem;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .agent-card li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+    }
+
+    .rails {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .rail {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid #1f1f1f;
+      border-left: 3px solid var(--orange);
+      border-radius: 8px;
+      padding: 18px 22px;
+    }
+
+    .rail strong {
+      color: white;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.97rem;
+    }
+
+    .rail span {
+      color: var(--grey);
+      font-size: 0.89rem;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+  <a href="../" class="logo">ASCENT <span>| Travel CRM</span></a>
+  <div class="nav-links">
+    <a href="#agents">The Agents</a>
+    <a href="#rails">Guardrails</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Early Access</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wip-badge"><span class="wip-dot"></span>IN DEVELOPMENT</div>
+  <h1>A Travel CRM That Picks Up the Phone</h1>
+  <div class="hero">
+    <p>
+      A traveller comments &ldquo;PLAN&rdquo; on a reel at midnight. Two minutes later a voice agent has called
+      them, worked out the month, the headcount and the budget, and handed a qualified enquiry to a
+      consultant &mdash; who wakes up to a plan worth writing. We're building it now.
+    </p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-solid">Get Early Access</a>
+      <a href="#agents" class="btn">Meet the Agents</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero-shot">
+  <div class="slider" id="tSlider">
+    <div class="slider-frame">
+      <div class="shot-bar"><i></i><i></i><i></i><span id="tSliderBar">Voice agent &mdash; configuration and a live test call</span></div>
+      <div class="slider-viewport">
+        <div class="slider-track" id="tSliderTrack">
+          <figure class="slide">
+            <img src="../assets/shots/travel-testcall.jpg" alt="The voice agent configuration screen beside a test call simulator: the agent's name, voice, languages, greeting, calling hours and escalation topics on the left; on the right a live transcript where the agent greets the caller, the caller answers in Hinglish, and the destination, month, traveller count, budget and outcome are extracted in real time." />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/travel-agents.jpg" alt="The AI agents control centre showing four agent cards with live metrics, and a review queue listing escalations and drafted replies awaiting a human approve or reject decision." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/travel-calls.jpg" alt="The call log showing which calls the voice agent handled versus the team, with duration, outcome, sentiment and a quality score for each." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/travel-guardrails.jpg" alt="The guardrails screen listing the policies the agents operate under, some locked always-on and others toggleable, covering refunds, pricing promises, escalation topics, quiet hours, human review and passport masking." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/travel-enquiries.jpg" alt="The enquiry pipeline as a board from New Enquiry through Contacted, Qualified and Itinerary Sent, each card showing the source, a bot badge where an agent handled it, a WhatsApp reply countdown, trip dates, party size, budget and an AI score." loading="lazy" />
+          </figure>
+          <figure class="slide">
+            <img src="../assets/shots/travel-itineraries.jpg" alt="The itinerary builder with a Build from a reel panel that takes an Instagram reel link, destination, nights, party size, pace and comfort level, above a library of reusable trip packages with per-person prices." loading="lazy" />
+          </figure>
+        </div>
+      </div>
+      <button class="slider-nav prev" id="tSliderPrev" type="button" aria-label="Previous screen">&#8249;</button>
+      <button class="slider-nav next" id="tSliderNext" type="button" aria-label="Next screen">&#8250;</button>
+    </div>
+    <p class="slider-caption" id="tSliderCaption" aria-live="polite"></p>
+    <div class="slider-dots" id="tSliderDots"></div>
+  </div>
+</div>
+
+<div class="neon-line"></div>
+
+<section id="agents">
+  <h2 class="section-title">Two Agents, One Team</h2>
+  <p class="section-sub">One works the phone, one works the chats. Neither of them freelances &mdash; anything sensitive goes to a human.</p>
+  <div class="grid">
+    <div class="agent-card">
+      <div class="who">Aanya</div>
+      <div class="role">Voice agent</div>
+      <p>Calls every new enquiry within minutes of it landing, while the traveller is still thinking about the trip.</p>
+      <ul>
+        <li>Confirms the month, the number of travellers and the budget per person</li>
+        <li>Answers the same questions consultants answer forty times a week &mdash; visa rules, price-from, voucher status</li>
+        <li>Switches to Hindi or Hinglish the moment the caller does</li>
+        <li>Moves the enquiry to Qualified and promises a plan on WhatsApp</li>
+      </ul>
+    </div>
+    <div class="agent-card">
+      <div class="who">Wish</div>
+      <div class="role">Auto-reply agent</div>
+      <p>Answers on WhatsApp and Instagram first, so nobody waits an hour for a reply to &ldquo;is this still available?&rdquo;</p>
+      <ul>
+        <li>Replies autonomously when it is confident, drafts for a human when it isn't</li>
+        <li>Holds the thread until a consultant picks it up</li>
+        <li>Caps its own replies per thread so a human takes over naturally</li>
+        <li>Stays quiet outside working hours beyond a simple acknowledgement</li>
+      </ul>
+    </div>
+    <div class="agent-card">
+      <div class="who">Scoring</div>
+      <div class="role">Background agent</div>
+      <p>Scores every open enquiry for conversion likelihood and says, in plain words, why.</p>
+      <ul>
+        <li>Re-scores as the traveller engages</li>
+        <li>Surfaces the hot enquiries at the top of the day</li>
+        <li>Explains the score instead of just asserting it</li>
+      </ul>
+    </div>
+    <div class="agent-card">
+      <div class="who">Itinerary &amp; follow-up</div>
+      <div class="role">Draft-only agent</div>
+      <p>Builds a day-by-day plan from an Instagram reel and nudges threads that have gone quiet.</p>
+      <ul>
+        <li>Rebuilds a reel's trip for the traveller's own dates, pace and budget</li>
+        <li>Leaves every itinerary in draft until a consultant approves it</li>
+        <li>Follows up on silent threads without being asked</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="rails">
+  <h2 class="section-title">The Guardrails Matter More Than the Agent</h2>
+  <p class="section-sub">An agent that can quote a refund is a liability. These rails are enforced in the prompt and in the tool layer &mdash; the locked ones can't be switched off at all.</p>
+  <div class="rails">
+    <div class="rail"><div><strong>Never quotes refunds or cancellation fees</strong><span>Any cancellation, refund or dispute is acknowledged and handed to a consultant with an urgent callback task.</span></div></div>
+    <div class="rail"><div><strong>Never promises availability or a confirmed price</strong><span>Replies say &ldquo;from &#8377;X per person, subject to availability&rdquo;. Confirmed numbers only ever come from a consultant-sent itinerary.</span></div></div>
+    <div class="rail"><div><strong>Escalates on cancellation, complaint, medical and visa rejection</strong><span>Hand-off topics tag the enquiry, flag it for attention and land it in the human review queue.</span></div></div>
+    <div class="rail"><div><strong>Passport numbers are masked everywhere the agent can see</strong><span>Summaries, transcripts and agent events show &bull;&bull;&bull;&bull;1234. Full numbers live only in the document vault.</span></div></div>
+    <div class="rail"><div><strong>Human review before any AI itinerary is sent</strong><span>Agent-built plans stay in draft until a consultant approves them.</span></div></div>
+    <div class="rail"><div><strong>Payment links only from consultants</strong><span>The chat agent never pastes a payment link &mdash; it tells the traveller a consultant will send one.</span></div></div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="features">
+  <h2 class="section-title">And the Rest of the Business</h2>
+  <p class="section-sub">The agents are the new part. Underneath it is a travel CRM that runs the whole trip.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Instagram to Booking</h3>
+      <p>A comment on a reel becomes a DM, a DM becomes a qualified enquiry, and the source stays attached to the lead all the way to the booking.</p>
+    </div>
+    <div class="card">
+      <h3>Itineraries From Reels</h3>
+      <p>Paste the reel a traveller fell in love with and get that trip rebuilt for their dates, pace and budget &mdash; with transparent per-person pricing.</p>
+    </div>
+    <div class="card">
+      <h3>One Inbox</h3>
+      <p>WhatsApp, Instagram and email in a single thread per traveller, with a reply clock on each one so nothing ages out quietly.</p>
+    </div>
+    <div class="card">
+      <h3>Every Call Scored</h3>
+      <p>Agent calls and consultant calls in one log, with transcripts, outcomes, sentiment and a quality score &mdash; so coaching isn't guesswork.</p>
+    </div>
+    <div class="card">
+      <h3>Trips, Docs &amp; Visas</h3>
+      <p>Travellers, documents, visa status and vouchers tracked through departure, with passports held in a vault rather than a chat thread.</p>
+    </div>
+    <div class="card">
+      <h3>Payments &amp; Collections</h3>
+      <p>Advances, balances and overdue collections tracked against each trip, with supplier payables on the other side of the ledger.</p>
+    </div>
+    <div class="card">
+      <h3>Ask the Data</h3>
+      <p>Ask a question about the business in plain English and get the answer back, the same way our sales CRM does it.</p>
+    </div>
+    <div class="card">
+      <h3>Full AI Audit</h3>
+      <p>Every agent decision &mdash; call, reply, score, draft &mdash; logged with what it saw and what it did. You can always answer &ldquo;why did it say that?&rdquo;</p>
+    </div>
+    <div class="card">
+      <h3>Role-Based Access</h3>
+      <p>Consultants, operations, finance and managers each get their own view, with approvals where money and documents are involved.</p>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line"></div>
+
+<section id="contact">
+  <h2 class="section-title">Want It For Your Agency?</h2>
+  <p class="section-sub">This one is still being built, which is the best time to shape it. Tell us how your consultants actually work and we'll show you where it stands &mdash; and where it could go for you.</p>
+  <div class="wa-cta">
+    <a class="wa-btn"
+       href="https://wa.me/918978451689?text=Hi%2C%20I%27m%20interested%20in%20the%20Travel%20CRM%20with%20the%20voice%20agent"
+       target="_blank"
+       rel="noopener noreferrer">
+      <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      Talk To Us on WhatsApp
+    </a>
+    <p class="wa-note">Opens WhatsApp with your message ready to send &middot; +91 89784 51689</p>
+  </div>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="https://www.linkedin.com/company/ascent-intelligent-technologies/" target="_blank">LinkedIn</a>
+    <a href="https://twitter.com/ascent_itech" target="_blank">Twitter</a>
+    <a href="https://www.facebook.com/profile.php?id=100092373452693" target="_blank">Facebook</a>
+    <a href="https://www.youtube.com/channel/UCAkYSzBZleaBLz8dCuyjIsA" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/ascent_itech/" target="_blank">Instagram</a>
+  </div>
+  <p>&copy; 2026 Ascent Intelligent Technologies. All Rights Reserved.</p>
+  <a href="../" class="back-link">&larr; Back to Ascent Intelligent Technologies</a>
+</footer>
+
+<script>
+(function () {
+  var slides = [
+    { bar: 'Voice agent — configuration and a live test call',
+      cap: '<b>The voice agent.</b> Her voice, her languages, her calling hours and the topics she must hand over — then a test call you can run, with the destination, month, headcount and budget pulled out of the conversation as it happens.' },
+    { bar: 'Agent control centre — and a human review queue',
+      cap: '<b>Control centre.</b> Every agent with its live numbers, and a queue of everything they decided to escalate or draft rather than send — each waiting on a human yes or no.' },
+    { bar: 'Calls — the agent’s and the team’s, side by side',
+      cap: '<b>Calls.</b> Half this week handled by the agent. Every call carries its outcome, the caller’s sentiment and a quality score, whoever took it.' },
+    { bar: 'Guardrails — what the agents may never do',
+      cap: '<b>Guardrails.</b> Refunds, prices, medical questions and passport numbers are fenced off in the prompt and the tool layer. The locked rails cannot be switched off.' },
+    { bar: 'Pipeline — from Instagram comment to itinerary sent',
+      cap: '<b>Pipeline.</b> Every enquiry with where it came from, whether an agent has already worked it, how long before the WhatsApp reply window closes, and what the trip is worth.' },
+    { bar: 'Itineraries — rebuilt from a reel',
+      cap: '<b>Itineraries.</b> Paste the reel the traveller fell for and get that trip rebuilt for their dates, pace and budget — then kept as a reusable package.' }
+  ];
+
+  var track = document.getElementById('tSliderTrack');
+  var bar = document.getElementById('tSliderBar');
+  var caption = document.getElementById('tSliderCaption');
+  var dotsBox = document.getElementById('tSliderDots');
+  var root = document.getElementById('tSlider');
+  if (!track || !bar || !caption || !dotsBox || !root) return;
+
+  var count = track.children.length;
+  var index = 0;
+  var timer = null;
+  var DELAY = 6000;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var dots = [];
+  for (var i = 0; i < count; i++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Show screen ' + (n + 1) + ' of ' + count);
+      b.addEventListener('click', function () { go(n); restart(); });
+      dotsBox.appendChild(b);
+      dots.push(b);
+    })(i);
+  }
+
+  function go(n) {
+    index = (n + count) % count;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    var s = slides[index] || { bar: '', cap: '' };
+    bar.innerHTML = s.bar;
+    caption.innerHTML = s.cap;
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].setAttribute('aria-current', i === index ? 'true' : 'false');
+    }
+  }
+
+  function next() { go(index + 1); }
+  function prev() { go(index - 1); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function start() { if (!reduced && !timer) timer = setInterval(next, DELAY); }
+  function restart() { stop(); start(); }
+
+  document.getElementById('tSliderNext').addEventListener('click', function () { next(); restart(); });
+  document.getElementById('tSliderPrev').addEventListener('click', function () { prev(); restart(); });
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', start);
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { next(); restart(); }
+    if (e.key === 'ArrowLeft') { prev(); restart(); }
+  });
+
+  var x0 = null;
+  root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+    x0 = null;
+    start();
+  }, { passive: true });
+
+  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+
+  go(0);
+  start();
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#f7931a" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 2 },
+    line_linked: { enable: true, distance: 150, color: "#f7931a", opacity: 0.2, width: 1 },
+    move: { enable: true, speed: 1 }
+  }
+});
+</script>
+
+</body>
+</html>

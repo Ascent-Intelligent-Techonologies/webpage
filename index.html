@@ -272,6 +272,25 @@
       flex: 1;
     }
 
+    .product-card.wip .product-thumb::after {
+      content: "IN DEVELOPMENT";
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      color: #000;
+      background: var(--orange);
+      padding: 5px 11px;
+      border-radius: 999px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+
+    .product-card.wip .product-thumb {
+      position: relative;
+    }
+
     .product-link {
       margin-top: 20px;
       color: var(--orange);
@@ -478,7 +497,7 @@
 
 <section id="products">
   <h2 class="section-title">Our Products</h2>
-  <p class="section-sub">Software we've built, shipped and run in production. Each one started as a problem a client couldn't solve with off-the-shelf tools.</p>
+  <p class="section-sub">Software we've built and run in production &mdash; plus one we're building right now. Each started as a problem a client couldn't solve with anything off the shelf.</p>
   <div class="product-grid">
 
     <a class="product-card" href="crm/">
@@ -518,6 +537,18 @@
         <h3>Service &amp; AMC CRM</h3>
         <p>For companies that install equipment and then service it for a decade. Installed-base register, commissioning workflows, the service book, engineer workload and AMC renewals that stop slipping through. Co-developed with Strange Loop Technologies.</p>
         <span class="product-link">See the Service CRM &rarr;</span>
+      </div>
+    </a>
+
+    <a class="product-card wip" href="travel-crm/">
+      <div class="product-thumb">
+        <img src="assets/shots/travel-testcall.jpg" alt="A travel CRM voice agent being configured beside a live test call with trip details extracted from the conversation." loading="lazy" />
+      </div>
+      <div class="product-body">
+        <span class="tag">Travel &middot; AI Voice</span>
+        <h3>Travel CRM</h3>
+        <p>A CRM for travel agencies with an AI voice agent that calls and qualifies new leads within minutes, an auto-reply agent on WhatsApp and Instagram, and guardrails that keep both of them honest. Being built now.</p>
+        <span class="product-link">See the Travel CRM &rarr;</span>
       </div>
     </a>
 
