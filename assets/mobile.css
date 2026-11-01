@@ -1,0 +1,143 @@
+/* Mobile and tablet layer shared by every page.
+   Linked after each page's own <style>, so these rules win at equal specificity. */
+
+.nav-toggle { display: none; }
+
+/* Navigation: logo + hamburger, links drop down underneath.
+   Collapses at 960px because the longest link set (Spend Tracker) needs ~890px for one row,
+   plus room for a desktop scrollbar. */
+@media (max-width: 960px) {
+  html { scroll-padding-top: 65px; }
+
+  body { padding-top: 65px; }
+
+  .navbar {
+    padding: 10px 10%;
+  }
+
+  .logo { white-space: nowrap; padding: 9px 0; }
+
+  .navbar.has-toggle .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 11px;
+    background: none;
+    border: 1px solid rgba(247,147,26,0.35);
+    border-radius: 8px;
+    box-shadow: none;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.2s;
+  }
+
+  .navbar.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .navbar.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .navbar.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .navbar.has-toggle .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 10% 12px;
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(247,147,26,0.2);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+
+  .navbar.has-toggle.open .nav-links {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .navbar.has-toggle .nav-links a {
+    margin: 0;
+    padding: 14px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #1c1c1c;
+  }
+
+  .navbar.has-toggle .nav-links a:last-child { border-bottom: none; }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 10px 6%; }
+  .navbar.has-toggle .nav-links { padding: 4px 6% 12px; }
+
+  /* Spacing: less air around everything */
+  header { padding: 40px 6% 28px; }
+  section { padding: 56px 6%; }
+  footer { padding: 32px 6%; }
+  .neon-line { width: 70%; margin: 40px auto; }
+  .section-title { font-size: 1.6rem; margin-bottom: 32px; }
+  .section-sub { margin-bottom: 32px; }
+  .card { padding: 24px; }
+
+  /* Hero badges wrap inside a rounded rectangle instead of a three-line pill */
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    padding: 8px 16px;
+    border-radius: 18px;
+  }
+
+  /* Home page product cards */
+  .product-thumb.chips {
+    aspect-ratio: auto;
+    padding: 22px 18px;
+  }
+
+  .product-body { padding: 22px 20px 26px; }
+  .tag { font-size: 0.7rem; }
+  .product-card.wip .product-thumb::after { font-size: 0.64rem; }
+  .client-body h3 span { font-size: 0.72rem; }
+
+  /* 16px fields stop iOS Safari zooming the page when one is focused */
+  input, textarea, select { font-size: 16px; }
+  form button { min-height: 48px; }
+
+  /* Footer links: wrap neatly and give each a finger-sized target */
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 6px;
+    margin-bottom: 8px;
+  }
+
+  .socials a { margin: 0; padding: 10px 8px; }
+  .back-link { padding: 8px 0; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.75rem; }
+}
+
+/* Slideshow dots: keep the look, enlarge the area a finger can hit */
+@media (pointer: coarse) {
+  .slider-dots button { position: relative; }
+
+  .slider-dots button::after {
+    content: "";
+    position: absolute;
+    inset: -14px -3px;
+  }
+}
