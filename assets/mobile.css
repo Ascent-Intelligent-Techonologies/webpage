@@ -114,6 +114,10 @@
   input, textarea, select { font-size: 16px; }
   form button { min-height: 48px; }
 
+  /* Contact email and phone: finger-sized rows, stacked when cramped */
+  .contact-direct { gap: 2px 24px; }
+  .contact-direct a { padding: 10px 4px; }
+
   /* Footer links: wrap neatly and give each a finger-sized target */
   .socials {
     display: flex;
